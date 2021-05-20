@@ -3,7 +3,7 @@ import './Form.css';
 
 export default function Form(props) {
 
-    const { values, change, disabled, submit } = props;
+    const { values, change, disabled, submit, errors } = props;
 
     const onChange = event => {
         const { name, value, checked, type } = event.target
@@ -57,14 +57,12 @@ export default function Form(props) {
                 </label>
 
                 <button disabled={disabled} >Submit</button>
+                <div>{errors.name}</div>
+                <div>{errors.email}</div>
+                <div>{errors.password}</div>
+                <div>{errors.terms}</div>
 
             </form>
         </div>
     )
 }
-
-// Name
-// Email
-// Password
-// Terms of Service (checkbox)
-// A Submit button to send our form data to the server.

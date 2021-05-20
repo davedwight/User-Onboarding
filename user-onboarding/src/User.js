@@ -9,7 +9,7 @@ export default function User(props) {
             <h3>Name: {details.name}</h3>
             <p>Email: {details.email}</p>
             <p>Password: {details.password}</p>
-            <p>Accepted Terms: {details.terms}</p>
+            <p>Accepted Terms: {details.terms ? 'Yes' : 'No'}</p>
         </div>
     )
 };
