@@ -3,7 +3,7 @@ import './Form.css';
 
 export default function Form(props) {
 
-    const { values, change } = props;
+    const { values, change, disabled, submit } = props;
 
     const onChange = event => {
         const { name, value, checked, type } = event.target
@@ -11,9 +11,14 @@ export default function Form(props) {
         change(name, valueToUse)
     }
 
+    const onSubmit = event => {
+        event.preventDefault()
+        submit()
+    }
+
     return(
         <div>
-            <form className='form-container'>
+            <form className='form-container' onSubmit={onSubmit}>
 
                 <label>Name
                     <input 
@@ -35,7 +40,7 @@ export default function Form(props) {
 
                 <label>Password
                     <input 
-                        name='email'
+                        name='password'
                         type='password'
                         value={values.password}
                         onChange={onChange}
@@ -51,7 +56,7 @@ export default function Form(props) {
                     />
                 </label>
 
-                <button>Submit</button>
+                <button disabled={disabled} >Submit</button>
 
             </form>
         </div>
