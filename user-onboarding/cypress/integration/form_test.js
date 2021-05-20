@@ -6,6 +6,8 @@ describe('Users App', () => {
     const nameInput = () => cy.get('input[name=name]')
     const emailInput = () => cy.get('input[name=email')
     const passwordInput = () => cy.get('input[name=password')
+    const termsCheckbox = () => cy.get('input[type=checkbox')
+    const submitBtn = () => cy.get('button')
 
     it('sanity check', () => {
         expect(1+2).to.equal(3)
@@ -18,6 +20,8 @@ describe('Users App', () => {
         nameInput().should('exist')
         emailInput().should('exist')
         passwordInput().should('exist')
+        termsCheckbox().should('exist')
+        submitBtn().should('exist')
     })
 
     describe('Filling out the inputs', () => {
@@ -39,6 +43,25 @@ describe('Users App', () => {
                 .type('asdfASDF123')
                 .should('have.value', 'asdfASDF123')
 
+        })
+
+        it('can check the checkbox', () => {
+            termsCheckbox()
+                .should('not.be.checked')
+                .check({ force: true })
+                .should('be.checked')
+        })
+
+        it('the submit button starts out disabled', () => {
+            submitBtn().should('be.disabled')
+        })
+
+        it('the submit button enables when inputs are filled out and checkbox is checked', () => {
+            nameInput().type('hello hello')
+            emailInput().type('hello@test.com')
+            passwordInput().type('asdfASDF123')
+            termsCheckbox().check({ force: true })
+            submitBtn().should('not.be.disabled')
         })
 
     })
