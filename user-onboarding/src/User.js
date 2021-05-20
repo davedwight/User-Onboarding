@@ -10,6 +10,7 @@ export default function User(props) {
             <p>Email: {details.email}</p>
             <p>Password: {details.password}</p>
             <p>Accepted Terms: {details.terms ? 'Yes' : 'No'}</p>
+            <p>ID: {details.id}</p>
         </div>
     )
 };

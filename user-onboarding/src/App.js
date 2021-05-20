@@ -4,6 +4,7 @@ import Form from './Form';
 import User from './User';
 import * as yup from 'yup';
 import schema from './formSchema';
+import axios from 'axios';
 
 const initialValues = {
   name: '',
@@ -28,6 +29,18 @@ function App() {
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(initialDisabled)
 
+  const postNewUser = newUser => {
+    axios.post('https://reqres.in/api/users', newUser)
+      .then(res => {
+        setUsers([res.data, ...users])
+        console.log('Post response: ', res.data)
+      })
+      .catch(err => {
+        console.log('Error: ', err)
+      })
+      .finally(setFormValues(initialValues))
+  }
+
   const validate = (name, value) => {
     yup.reach(schema, name)
       .validate(value)
@@ -50,9 +63,7 @@ function App() {
       password: formValues.password.trim(),
       terms: formValues.terms,
     }
-    setUsers([
-      newUser, ...users
-    ])
+    postNewUser(newUser)
   }
   console.log('Users: ', users);
 
