@@ -8,6 +8,11 @@ describe('Users App', () => {
     const passwordInput = () => cy.get('input[name=password')
     const termsCheckbox = () => cy.get('input[type=checkbox')
     const submitBtn = () => cy.get('button')
+    // const nameErrors = () => cy.get('div[id=name-errors]')
+    // const emailErrors = () => cy.get('div[id=email-errors]')
+    // const passwordErrors = () => cy.get('div[id=password-errors]')
+    // const termsErrors = () => cy.get('div[id=terms-errors]')
+
 
     it('sanity check', () => {
         expect(1+2).to.equal(3)
@@ -63,6 +68,12 @@ describe('Users App', () => {
             termsCheckbox().check({ force: true })
             submitBtn().should('not.be.disabled')
         })
+
+        // it('validation errors appear if an input field is left empty', () => {
+        //     nameInput().type('')
+        //     emailInput.type('')
+        //     passwordInput('')
+        // })
 
     })
 })
